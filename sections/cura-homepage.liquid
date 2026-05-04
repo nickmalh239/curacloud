@@ -1,0 +1,943 @@
+{% comment %}Cura Cloud — self-contained homepage section{% endcomment %}
+
+<style>
+  :root {
+    --ch-sky: #3AABDA;
+    --ch-sky-dark: #2293C2;
+    --ch-sky-light: #D6EEFA;
+    --ch-sky-fog: #EBF5FC;
+    --ch-sky-cloud: #F5F9FF;
+    --ch-navy: #1B2B3C;
+    --ch-navy-mid: #2A3F55;
+    --ch-white: #FFFFFF;
+    --ch-gold: #F0A500;
+    --ch-text: #1B2B3C;
+    --ch-muted: #5A7A90;
+    --ch-border: #D6E8F3;
+    --ch-display: 'Playfair Display', Georgia, serif;
+    --ch-body: 'DM Sans', var(--font-body-family), sans-serif;
+    --ch-radius: 16px;
+    --ch-pill: 40px;
+    --ch-shadow: 0 4px 20px rgba(27,43,60,0.07), 0 1px 4px rgba(27,43,60,0.04);
+    --ch-shadow-hover: 0 16px 48px rgba(58,171,218,0.16), 0 4px 12px rgba(27,43,60,0.08);
+  }
+
+  .ch * { box-sizing: border-box; }
+  .ch a { text-decoration: none; color: inherit; }
+  .ch img { display: block; max-width: 100%; }
+
+  /* HERO */
+  .ch-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 88vh;
+    background: linear-gradient(135deg, #C9E8F7 0%, #DDEEFA 30%, #EEF7FD 65%, #F8FCFF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .ch-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(58,171,218,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ch-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px 80px 80px;
+    animation: ch-fadeup 0.9s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .ch-hero__image {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 80px 40px 20px;
+    animation: ch-fadein 1.1s 0.3s both;
+  }
+  .ch-hero__image img {
+    width: 100%;
+    max-width: 560px;
+    animation: ch-float 5s ease-in-out infinite;
+    filter: drop-shadow(0 32px 64px rgba(27,43,60,0.18)) drop-shadow(0 8px 20px rgba(58,171,218,0.2));
+  }
+  .ch-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(58,171,218,0.12);
+    border: 1px solid rgba(58,171,218,0.3);
+    color: var(--ch-sky-dark);
+    font-family: var(--ch-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: var(--ch-pill);
+    margin-bottom: 28px;
+  }
+  .ch-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--ch-sky);
+    flex-shrink: 0;
+  }
+  .ch-hero h1 {
+    font-family: var(--ch-display) !important;
+    font-size: clamp(2.8rem, 5vw, 4.4rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.03em !important;
+    color: var(--ch-navy) !important;
+    margin-bottom: 24px !important;
+  }
+  .ch-hero h1 em {
+    font-style: italic;
+    color: var(--ch-sky-dark);
+  }
+  .ch-hero__sub {
+    font-family: var(--ch-body);
+    font-size: 1.1rem;
+    color: var(--ch-muted);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+  .ch-hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .ch-hero__stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .ch-stat__num {
+    font-family: var(--ch-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ch-navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .ch-stat__label {
+    font-family: var(--ch-body);
+    font-size: 0.75rem;
+    color: var(--ch-muted);
+    margin-top: 4px;
+  }
+  .ch-stat__divider {
+    width: 1px;
+    background: var(--ch-border);
+    align-self: stretch;
+  }
+
+  /* BUTTONS */
+  .ch-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--ch-pill);
+    font-family: var(--ch-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 14px 32px;
+    line-height: 1;
+    transition: all 0.22s ease;
+    text-decoration: none;
+  }
+  .ch-btn--primary { background: var(--ch-sky); color: #fff; border-color: var(--ch-sky); }
+  .ch-btn--primary:hover { background: var(--ch-sky-dark); border-color: var(--ch-sky-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(58,171,218,0.35); }
+  .ch-btn--outline { background: transparent; color: var(--ch-navy); border-color: var(--ch-navy); }
+  .ch-btn--outline:hover { background: var(--ch-navy); color: #fff; }
+  .ch-btn--outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+  .ch-btn--outline-white:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+  .ch-btn--sm { padding: 10px 22px; font-size: 0.82rem; }
+
+  /* TRUST BAR */
+  .ch-trust {
+    background: var(--ch-white);
+    border-top: 1px solid var(--ch-border);
+    border-bottom: 1px solid var(--ch-border);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ch-trust__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 40px;
+    border-right: 1px solid var(--ch-border);
+  }
+  .ch-trust__item:last-child { border-right: none; }
+  .ch-trust__icon {
+    width: 38px; height: 38px;
+    background: var(--ch-sky-fog);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ch-trust__icon svg { width: 18px; height: 18px; }
+  .ch-trust__text strong { display: block; color: var(--ch-navy); font-weight: 600; font-size: 0.83rem; font-family: var(--ch-body); }
+  .ch-trust__text span { color: var(--ch-muted); font-size: 0.78rem; font-family: var(--ch-body); }
+
+  /* SECTIONS */
+  .ch-section {
+    padding: 96px 80px;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+  .ch-section--center { text-align: center; }
+  .ch-section--bg-cloud { background: var(--ch-sky-cloud); }
+  .ch-section--bg-fog { background: var(--ch-sky-fog); }
+  .ch-section--bg-navy { background: var(--ch-navy); }
+  .ch-section-wrap { padding: 96px 0; }
+  .ch-section-wrap--cloud { background: var(--ch-sky-cloud); }
+  .ch-section-wrap--fog { background: var(--ch-sky-fog); }
+  .ch-section-wrap--navy { background: var(--ch-navy); }
+  .ch-section-wrap--sky { background: var(--ch-sky); }
+
+  .ch-label {
+    font-family: var(--ch-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ch-sky);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .ch-heading {
+    font-family: var(--ch-display) !important;
+    font-size: clamp(2rem, 3.5vw, 3rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+    color: var(--ch-navy) !important;
+    margin-bottom: 20px !important;
+  }
+  .ch-heading--white { color: #fff !important; }
+  .ch-heading--sm { font-size: clamp(1.6rem, 2.5vw, 2.2rem) !important; }
+  .ch-sub {
+    font-family: var(--ch-body);
+    font-size: 1.05rem;
+    color: var(--ch-muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .ch-label--white { color: rgba(255,255,255,0.55); }
+  .ch-sub--white { color: rgba(255,255,255,0.8); }
+
+  /* BENEFITS */
+  .ch-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .ch-benefit-card {
+    background: var(--ch-white);
+    border-radius: var(--ch-radius);
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: var(--ch-shadow);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  }
+  .ch-benefit-card:hover { transform: translateY(-8px); box-shadow: var(--ch-shadow-hover); }
+  .ch-benefit-icon {
+    width: 60px; height: 60px;
+    background: var(--ch-sky-fog);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+  .ch-benefit-icon svg { width: 28px; height: 28px; color: var(--ch-sky); }
+  .ch-benefit-title {
+    font-family: var(--ch-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ch-navy);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .ch-benefit-text {
+    font-family: var(--ch-body);
+    font-size: 0.9rem;
+    color: var(--ch-muted);
+    line-height: 1.7;
+  }
+  .ch-benefit-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ch-sky);
+    font-family: var(--ch-body);
+  }
+  .ch-benefit-link:hover { text-decoration: underline; }
+
+  /* PRODUCTS */
+  .ch-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .ch-product-card {
+    background: var(--ch-white);
+    border-radius: var(--ch-radius);
+    overflow: hidden;
+    box-shadow: var(--ch-shadow);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  }
+  .ch-product-card:hover { transform: translateY(-8px); box-shadow: var(--ch-shadow-hover); }
+  .ch-product-img {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--ch-sky-cloud);
+    position: relative;
+  }
+  .ch-product-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .ch-product-card:hover .ch-product-img img { transform: scale(1.06); }
+  .ch-product-placeholder-img {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--ch-sky-fog) 0%, var(--ch-sky-light) 100%);
+    font-family: var(--ch-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ch-sky-dark);
+    padding: 20px;
+    text-align: center;
+  }
+  .ch-product-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--ch-sky);
+    color: white;
+    font-family: var(--ch-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--ch-pill);
+  }
+  .ch-product-info { padding: 20px; text-align: center; }
+  .ch-product-stars { color: var(--ch-gold); font-size: 0.85rem; margin-bottom: 8px; letter-spacing: 0.04em; }
+  .ch-product-name {
+    font-family: var(--ch-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ch-navy);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .ch-product-type {
+    font-family: var(--ch-body);
+    font-size: 0.78rem;
+    color: var(--ch-muted);
+    margin-bottom: 12px;
+  }
+  .ch-product-price {
+    font-family: var(--ch-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ch-navy);
+    margin-bottom: 16px;
+  }
+  .ch-product-price s { color: var(--ch-muted); font-size: 0.85rem; font-weight: 400; margin-right: 6px; }
+  .ch-product-price .sale { color: var(--ch-sky); }
+  .ch-add-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--ch-navy);
+    color: white;
+    border: none;
+    border-radius: var(--ch-pill);
+    font-family: var(--ch-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: block;
+    text-align: center;
+  }
+  .ch-add-btn:hover { background: var(--ch-sky); transform: translateY(-1px); }
+  .ch-view-all { text-align: center; margin-top: 48px; }
+
+  /* HOW IT WORKS */
+  .ch-how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 64px;
+    position: relative;
+  }
+  .ch-how-grid::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(16.66% + 16px);
+    right: calc(16.66% + 16px);
+    height: 2px;
+    background: linear-gradient(to right, var(--ch-sky-light), var(--ch-sky));
+  }
+  .ch-how-step { text-align: center; position: relative; z-index: 1; }
+  .ch-how-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--ch-sky);
+    color: white;
+    font-family: var(--ch-display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 24px rgba(58,171,218,0.35);
+  }
+  .ch-how-title {
+    font-family: var(--ch-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ch-navy);
+    margin-bottom: 12px;
+  }
+  .ch-how-text { font-family: var(--ch-body); font-size: 0.9rem; color: var(--ch-muted); line-height: 1.7; }
+
+  /* SPLIT / TESTIMONIAL */
+  .ch-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    max-width: 100%;
+  }
+  .ch-split__img {
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    background: var(--ch-sky-light);
+  }
+  .ch-split__img img { width: 100%; height: 100%; object-fit: cover; }
+  .ch-split__img-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #C9E8F7, var(--ch-sky-fog));
+    font-family: var(--ch-display);
+    font-size: 1.5rem;
+    color: var(--ch-sky-dark);
+    font-weight: 600;
+    padding: 40px;
+    text-align: center;
+  }
+  .ch-split__content {
+    padding: 80px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--ch-sky-fog);
+  }
+  .ch-quote-mark {
+    font-family: var(--ch-display);
+    font-size: 6rem;
+    line-height: 0.7;
+    color: var(--ch-sky);
+    opacity: 0.4;
+    margin-bottom: 16px;
+    font-style: italic;
+    display: block;
+  }
+  .ch-quote-text {
+    font-family: var(--ch-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ch-navy);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .ch-quote-stars { color: var(--ch-gold); font-size: 1rem; margin-bottom: 20px; letter-spacing: 0.1em; }
+  .ch-quote-author strong {
+    display: block;
+    font-family: var(--ch-body);
+    font-weight: 600;
+    color: var(--ch-navy);
+    font-style: normal;
+    font-size: 0.9rem;
+  }
+  .ch-quote-author span {
+    font-family: var(--ch-body);
+    font-size: 0.8rem;
+    color: var(--ch-muted);
+    font-style: normal;
+  }
+
+  /* REVIEWS */
+  .ch-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .ch-review-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--ch-radius);
+    padding: 36px;
+    transition: background 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .ch-review-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+  .ch-review-stars { color: var(--ch-gold); font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .ch-review-text {
+    font-family: var(--ch-display);
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  .ch-reviewer { display: flex; align-items: center; gap: 12px; }
+  .ch-reviewer-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--ch-sky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ch-display);
+    font-weight: 700;
+    color: white;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .ch-reviewer-name {
+    font-family: var(--ch-body);
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.88rem;
+    display: block;
+  }
+  .ch-reviewer-tag {
+    font-family: var(--ch-body);
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+  .ch-reviews-cta { text-align: center; margin-top: 48px; }
+
+  /* NEWSLETTER */
+  .ch-newsletter-wrap { text-align: center; }
+  .ch-newsletter-wrap .ch-label { color: rgba(255,255,255,0.6); }
+  .ch-newsletter-wrap .ch-heading { color: #fff !important; }
+  .ch-newsletter-wrap .ch-sub { color: rgba(255,255,255,0.82); }
+  .ch-email-form {
+    display: flex;
+    max-width: 480px;
+    margin: 40px auto 0;
+    background: white;
+    border-radius: var(--ch-pill);
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(27,43,60,0.15);
+  }
+  .ch-email-form input[type="email"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px 24px;
+    font-family: var(--ch-body);
+    font-size: 0.9rem;
+    color: var(--ch-navy);
+    background: transparent;
+  }
+  .ch-email-form input[type="email"]::placeholder { color: var(--ch-muted); }
+  .ch-email-submit {
+    background: var(--ch-navy);
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    font-family: var(--ch-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 0 var(--ch-pill) var(--ch-pill) 0;
+    white-space: nowrap;
+  }
+  .ch-email-submit:hover { background: #0D1820; }
+  .ch-newsletter-note {
+    margin-top: 14px;
+    font-family: var(--ch-body);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ANIMATIONS */
+  @keyframes ch-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes ch-fadeup { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+  @keyframes ch-fadein { from { opacity:0; } to { opacity:1; } }
+  .ch-reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .ch-reveal.visible { opacity:1; transform:none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .ch-benefits-grid, .ch-products-grid { grid-template-columns: repeat(2,1fr); }
+    .ch-hero { grid-template-columns: 1fr; }
+    .ch-hero__content { padding: 80px 40px 40px; text-align: center; }
+    .ch-hero__sub, .ch-hero__stats { margin-left: auto; margin-right: auto; justify-content: center; }
+    .ch-hero__actions { justify-content: center; }
+    .ch-hero__image { padding: 20px 40px 80px; }
+    .ch-split { grid-template-columns: 1fr; }
+    .ch-split__img { min-height: 360px; }
+    .ch-split__content { padding: 60px 40px; }
+    .ch-section { padding: 80px 40px; }
+  }
+  @media (max-width: 768px) {
+    .ch-section { padding: 64px 20px; }
+    .ch-benefits-grid, .ch-products-grid, .ch-reviews-grid, .ch-how-grid { grid-template-columns: 1fr; }
+    .ch-how-grid::before { display: none; }
+    .ch-trust { overflow-x: auto; justify-content: flex-start; padding: 16px 20px; }
+    .ch-trust__item { padding: 0 24px; white-space: nowrap; }
+    .ch-hero__content { padding: 60px 20px 40px; }
+    .ch-hero__image { padding: 10px 20px 60px; }
+    .ch-split__content { padding: 48px 24px; }
+  }
+</style>
+
+<div class="ch">
+
+  {%- comment -%}── HERO ──{%- endcomment -%}
+  <section class="ch-hero">
+    <div class="ch-hero__content">
+      <span class="ch-eyebrow">CertiPUR-US® Certified</span>
+      <h1>Wake Up<br><em>Without Pain.</em></h1>
+      <p class="ch-hero__sub">Orthopedic precision engineered for side, back, and stomach sleepers. Developed with sleep specialists to eliminate neck pain at the source.</p>
+      <div class="ch-hero__actions">
+        <a href="{{ routes.root_url }}collections/all" class="ch-btn ch-btn--primary">Shop the Collection</a>
+        <a href="{{ routes.root_url }}pages/about" class="ch-btn ch-btn--outline">See How It Works</a>
+      </div>
+      <div class="ch-hero__stats">
+        <div>
+          <div class="ch-stat__num">50K+</div>
+          <div class="ch-stat__label">Happy Customers</div>
+        </div>
+        <div class="ch-stat__divider"></div>
+        <div>
+          <div class="ch-stat__num">4.9★</div>
+          <div class="ch-stat__label">Average Rating</div>
+        </div>
+        <div class="ch-stat__divider"></div>
+        <div>
+          <div class="ch-stat__num">60</div>
+          <div class="ch-stat__label">Night Trial</div>
+        </div>
+      </div>
+    </div>
+    <div class="ch-hero__image">
+      <img src="{{ 'cura-hero.webp' | asset_url }}" alt="Cura Cloud Orthopedic Cervical Pillow" width="560" height="560" loading="eager" />
+    </div>
+  </section>
+
+  {%- comment -%}── TRUST BAR ──{%- endcomment -%}
+  <div class="ch-trust">
+    <div class="ch-trust__item">
+      <div class="ch-trust__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#3AABDA"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="ch-trust__text"><strong>Free Shipping</strong><span>On orders over $100</span></div>
+    </div>
+    <div class="ch-trust__item">
+      <div class="ch-trust__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#3AABDA"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <div class="ch-trust__text"><strong>CertiPUR-US®</strong><span>Certified safe foam</span></div>
+    </div>
+    <div class="ch-trust__item">
+      <div class="ch-trust__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#3AABDA"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="ch-trust__text"><strong>60-Night Trial</strong><span>Risk-free returns</span></div>
+    </div>
+    <div class="ch-trust__item">
+      <div class="ch-trust__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#3AABDA"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="ch-trust__text"><strong>Expert Approved</strong><span>Sleep specialist tested</span></div>
+    </div>
+  </div>
+
+  {%- comment -%}── BENEFITS ──{%- endcomment -%}
+  <div class="ch-section-wrap ch-section-wrap--cloud">
+    <div class="ch-section ch-section--center">
+      <span class="ch-label ch-reveal">Why Cura Cloud?</span>
+      <h2 class="ch-heading ch-reveal">Engineered for Deeper,<br>Pain-Free Sleep</h2>
+      <p class="ch-sub ch-reveal">Every design decision made with one goal: you waking up feeling restored.</p>
+      <div class="ch-benefits-grid">
+        <div class="ch-benefit-card ch-reveal">
+          <div class="ch-benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M19 9a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4H5a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2"/></svg>
+          </div>
+          <div class="ch-benefit-title">Orthopedic Precision</div>
+          <p class="ch-benefit-text">Contoured memory foam engineered to align your cervical spine — whether you sleep on your side, back, or stomach.</p>
+        </div>
+        <div class="ch-benefit-card ch-reveal">
+          <div class="ch-benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.5 0 2.91.37 4.15 1.02"/></svg>
+          </div>
+          <div class="ch-benefit-title">CertiPUR-US® Certified</div>
+          <p class="ch-benefit-text">No harmful chemicals. Tested by independent labs for content, emissions, and durability. Safe for the whole family.</p>
+        </div>
+        <div class="ch-benefit-card ch-reveal">
+          <div class="ch-benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="ch-benefit-title">60-Night Sleep Trial</div>
+          <p class="ch-benefit-text">Sleep on it for two full months. Not waking up pain-free? Return it for a complete refund. No questions asked.</p>
+          <a href="{{ routes.root_url }}collections/all" class="ch-benefit-link">Start your trial →</a>
+        </div>
+        <div class="ch-benefit-card ch-reveal">
+          <div class="ch-benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="ch-benefit-title">Expert Approved</div>
+          <p class="ch-benefit-text">Developed with board-certified sleep specialists. Customers report measurable neck pain relief within the first week.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}── PRODUCTS ──{%- endcomment -%}
+  <div class="ch-section-wrap">
+    <div class="ch-section ch-section--center">
+      <span class="ch-label ch-reveal">The Cura Collection</span>
+      <h2 class="ch-heading ch-reveal">Find Your Perfect Pillow</h2>
+      <p class="ch-sub ch-reveal">Orthopedic pillows engineered for every sleep position.</p>
+      <div class="ch-products-grid">
+        {%- assign cura_products = collections.all.products -%}
+        {%- if cura_products.size > 0 -%}
+          {%- for product in cura_products limit: 4 -%}
+            <div class="ch-product-card ch-reveal">
+              <a href="{{ product.url }}">
+                <div class="ch-product-img">
+                  {%- if product.featured_image -%}
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" width="600" height="600">
+                  {%- else -%}
+                    <div class="ch-product-placeholder-img">{{ product.title }}</div>
+                  {%- endif -%}
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="ch-product-badge">Sale</span>
+                  {%- endif -%}
+                </div>
+                <div class="ch-product-info">
+                  <div class="ch-product-stars">★★★★★</div>
+                  <div class="ch-product-name">{{ product.title }}</div>
+                  <div class="ch-product-type">{{ product.type }}</div>
+                  <div class="ch-product-price">
+                    {%- if product.compare_at_price > product.price -%}
+                      <s>{{ product.compare_at_price | money }}</s>
+                      <span class="sale">{{ product.price | money }}</span>
+                    {%- else -%}
+                      {{ product.price | money }}
+                    {%- endif -%}
+                  </div>
+                </div>
+              </a>
+              <div style="padding:0 20px 20px">
+                <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <button type="submit" class="ch-add-btn">Add to Cart</button>
+                </form>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- assign placeholder_products = "Curveback Classic|Side & Back Sleepers|$49.99|Best Seller,Curveback Orthofit|Universal Fit|$69.99|Most Popular,Curveback Shape|Stomach Sleepers|$79.99|,Curveback Pro|Advanced Support|$129.99|New" | split: "," -%}
+          {%- for item in placeholder_products -%}
+            {%- assign parts = item | split: "|" -%}
+            <div class="ch-product-card ch-reveal">
+              <a href="{{ routes.root_url }}collections/all">
+                <div class="ch-product-img">
+                  <div class="ch-product-placeholder-img">{{ parts[0] }}</div>
+                  {%- if parts[3] != blank -%}
+                    <span class="ch-product-badge">{{ parts[3] }}</span>
+                  {%- endif -%}
+                </div>
+                <div class="ch-product-info">
+                  <div class="ch-product-stars">★★★★★</div>
+                  <div class="ch-product-name">{{ parts[0] }}</div>
+                  <div class="ch-product-type">{{ parts[1] }}</div>
+                  <div class="ch-product-price">{{ parts[2] }}</div>
+                </div>
+              </a>
+              <div style="padding:0 20px 20px">
+                <a href="{{ routes.root_url }}collections/all" class="ch-add-btn">Shop Now</a>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <div class="ch-view-all">
+        <a href="{{ routes.root_url }}collections/all" class="ch-btn ch-btn--outline ch-reveal">View All Products</a>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}── HOW IT WORKS ──{%- endcomment -%}
+  <div class="ch-section-wrap ch-section-wrap--cloud">
+    <div class="ch-section ch-section--center">
+      <span class="ch-label ch-reveal">How It Works</span>
+      <h2 class="ch-heading ch-reveal">Three Steps to Pain-Free Mornings</h2>
+      <div class="ch-how-grid">
+        <div class="ch-how-step ch-reveal">
+          <div class="ch-how-num">1</div>
+          <div class="ch-how-title">Choose Your Pillow</div>
+          <p class="ch-how-text">Take our 60-second sleep quiz to find the exact pillow designed for your sleep position and neck size.</p>
+        </div>
+        <div class="ch-how-step ch-reveal">
+          <div class="ch-how-num">2</div>
+          <div class="ch-how-title">Sleep on It</div>
+          <p class="ch-how-text">Most customers notice a difference within the first few nights. Give it the full 60 days for maximum benefit.</p>
+        </div>
+        <div class="ch-how-step ch-reveal">
+          <div class="ch-how-num">3</div>
+          <div class="ch-how-title">Wake Up Restored</div>
+          <p class="ch-how-text">No more stiff neck, no more morning headaches. Just deep sleep and days that start feeling right.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}── DOCTOR TESTIMONIAL ──{%- endcomment -%}
+  <div class="ch-split ch-reveal">
+    <div class="ch-split__img">
+      <div class="ch-split__img-placeholder">Dr. Michael S.<br><span style="font-size:0.9rem;opacity:0.6;font-style:italic">Board-Certified Sleep Specialist</span></div>
+    </div>
+    <div class="ch-split__content">
+      <span class="ch-label">Physician Recommended</span>
+      <h2 class="ch-heading ch-heading--sm">Recommended by<br>Sleep Specialists</h2>
+      <div class="ch-quote-stars">★★★★★</div>
+      <span class="ch-quote-mark">"</span>
+      <p class="ch-quote-text">Some of my patients had chronic neck pain for years. I started recommending Cura Cloud after seeing patient after patient wake up without the stiffness they'd lived with for decades. The cervical contour design genuinely works.</p>
+      <div class="ch-quote-author" style="margin:24px 0 36px">
+        <strong>Dr. Michael S.</strong>
+        <span>Board-Certified Sleep Specialist · 18 Years Experience</span>
+      </div>
+      <a href="{{ routes.root_url }}collections/all" class="ch-btn ch-btn--primary">Read All Reviews</a>
+    </div>
+  </div>
+
+  {%- comment -%}── CUSTOMER REVIEWS ──{%- endcomment -%}
+  <div class="ch-section-wrap ch-section-wrap--navy">
+    <div class="ch-section ch-section--center">
+      <span class="ch-label ch-label--white ch-reveal">4.9 out of 5 stars · 2,400+ reviews</span>
+      <h2 class="ch-heading ch-heading--white ch-reveal">What Our Customers Say</h2>
+      <div class="ch-reviews-grid">
+        <div class="ch-review-card ch-reveal">
+          <div class="ch-review-stars">★★★★★</div>
+          <p class="ch-review-text">"I've been sleeping on this pillow for 3 months. My neck pain is completely gone. Best purchase I've made all year — and I've tried everything."</p>
+          <div class="ch-reviewer">
+            <div class="ch-reviewer-avatar">S</div>
+            <div>
+              <span class="ch-reviewer-name">Sarah M.</span>
+              <span class="ch-reviewer-tag">Verified buyer · Side sleeper</span>
+            </div>
+          </div>
+        </div>
+        <div class="ch-review-card ch-reveal">
+          <div class="ch-review-stars">★★★★★</div>
+          <p class="ch-review-text">"As someone who's tried a dozen 'orthopedic' pillows, Cura Cloud is the real deal. The contour fits my neck perfectly. I sleep through the night now."</p>
+          <div class="ch-reviewer">
+            <div class="ch-reviewer-avatar">J</div>
+            <div>
+              <span class="ch-reviewer-name">James T.</span>
+              <span class="ch-reviewer-tag">Verified buyer · Back sleeper</span>
+            </div>
+          </div>
+        </div>
+        <div class="ch-review-card ch-reveal">
+          <div class="ch-review-stars">★★★★★</div>
+          <p class="ch-review-text">"Slept through the night for the first time in years. My doctor noticed my posture improved at my next checkup. Worth every single penny."</p>
+          <div class="ch-reviewer">
+            <div class="ch-reviewer-avatar">L</div>
+            <div>
+              <span class="ch-reviewer-name">Linda R.</span>
+              <span class="ch-reviewer-tag">Verified buyer · Side sleeper</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-reviews-cta">
+        <a href="{{ routes.root_url }}collections/all" class="ch-btn ch-btn--outline-white ch-reveal">See All 2,400+ Reviews</a>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}── NEWSLETTER ──{%- endcomment -%}
+  <div class="ch-section-wrap ch-section-wrap--sky">
+    <div class="ch-section ch-newsletter-wrap">
+      <span class="ch-label ch-label--white ch-reveal">Join the Community</span>
+      <h2 class="ch-heading ch-heading--white ch-reveal">Better Sleep Starts Tonight</h2>
+      <p class="ch-sub ch-sub--white ch-reveal">Join 50,000+ customers who wake up feeling truly rested. Get exclusive sleep tips, early access, and <strong>10% off your first order</strong>.</p>
+      {%- form 'customer', class: 'ch-email-form ch-reveal' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="Enter your email address" required autocomplete="email">
+        <button type="submit" class="ch-email-submit">
+          {%- if form.posted_successfully? -%}
+            You're in! ✓
+          {%- else -%}
+            Get 10% Off
+          {%- endif -%}
+        </button>
+      {%- endform -%}
+      <p class="ch-newsletter-note ch-reveal">No spam, ever. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.ch-reveal').forEach(function(el, i) {
+      setTimeout(function() { el.classList.add('visible'); }, i * 50);
+    });
+  });
+  var chObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); chObserver.unobserve(entry.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.ch-reveal').forEach(function(el) { chObserver.observe(el); });
+</script>
+
+{% schema %}
+{
+  "name": "Cura Cloud Homepage",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [],
+  "presets": [{ "name": "Cura Cloud Homepage" }]
+}
+{% endschema %}
