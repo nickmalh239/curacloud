@@ -1,0 +1,314 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "CertiPUR-US® Certified · Tested & Approved by Sleep Experts",
+            "text_style": "caption-with-letter-spacing"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Wake Up Without Pain.",
+            "heading_size": "hxxl"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop the Collection",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "See How It Works",
+            "button_link_2": "shopify://pages/about",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "button"],
+      "settings": {
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "image_behavior": "zoom-in",
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "trust_bar": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Trusted by 50,000+ Sleepers Worldwide",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Orthopedic Precision for Every Sleep Style",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our cervical support pillows are developed alongside board-certified sleep specialists to eliminate neck pain at the source — so you wake up feeling restored, not stiff. Side sleeper, back sleeper, or stomach sleeper, there’s a Cura Cloud built for you.</p>"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "benefits": {
+      "type": "multicolumn",
+      "blocks": {
+        "col1": {
+          "type": "column",
+          "settings": {
+            "title": "Orthopedic Precision",
+            "text": "<p>Contoured memory foam engineered to align your cervical spine whether you sleep on your side, back, or stomach.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "col2": {
+          "type": "column",
+          "settings": {
+            "title": "CertiPUR-US® Certified",
+            "text": "<p>No harmful chemicals, no off-gassing. Tested by independent laboratories for content, emissions, and durability.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "col3": {
+          "type": "column",
+          "settings": {
+            "title": "60-Night Sleep Trial",
+            "text": "<p>Sleep on it for two full months. If you’re not waking up pain-free, return it for a complete refund — no questions asked.</p>",
+            "link_label": "Start your trial →",
+            "link": "shopify://collections/all"
+          }
+        },
+        "col4": {
+          "type": "column",
+          "settings": {
+            "title": "Expert Approved",
+            "text": "<p>Developed with board-certified sleep specialists and tested by thousands of customers who reported measurable neck pain relief.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["col1", "col2", "col3", "col4"],
+      "settings": {
+        "title": "Why Cura Cloud?",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-5",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "The Cura Collection",
+        "heading_size": "h2",
+        "description": "Orthopedic pillows engineered for every sleep position.",
+        "show_description": true,
+        "description_style": "subtitle",
+        "collection": "all",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "doctor_testimonial": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Physician Recommended",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recommended by Sleep Specialists",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>“Some of my patients had chronic neck pain for years. I started recommending Cura Cloud after seeing patient after patient wake up without the stiffness and pain they’d lived with for decades. The cervical contour design genuinely works.”</p><p><strong>— Dr. Michael S., Board-Certified Sleep Specialist</strong></p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Read All Reviews",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text", "button"],
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "scheme-1",
+        "section_color_scheme": "scheme-2",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "social_proof": {
+      "type": "multicolumn",
+      "blocks": {
+        "review1": {
+          "type": "column",
+          "settings": {
+            "title": "★★★★★",
+            "text": "<p>“I’ve been sleeping on this pillow for 3 months. My neck pain is completely gone. Best purchase I’ve made all year.”</p><p><em>— Sarah M., verified buyer</em></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "review2": {
+          "type": "column",
+          "settings": {
+            "title": "★★★★★",
+            "text": "<p>“As someone who’s tried a dozen ‘orthopedic’ pillows, Cura Cloud is the real deal. The contour actually fits my neck perfectly.”</p><p><em>— James T., verified buyer</em></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "review3": {
+          "type": "column",
+          "settings": {
+            "title": "★★★★★",
+            "text": "<p>“Slept through the night for the first time in years. My doctor noticed my posture improved at my next checkup.”</p><p><em>— Linda R., verified buyer</em></p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["review1", "review2", "review3"],
+      "settings": {
+        "title": "What Our Customers Say",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "See All Reviews",
+        "button_link": "shopify://collections/all",
+        "color_scheme": "scheme-4",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "email_signup": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Better Sleep Starts Tonight",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Join 50,000+ customers who wake up feeling truly rested. Get exclusive sleep tips, early access to new products, and <strong>10% off your first order</strong>.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": ["heading", "paragraph", "email_form"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "trust_bar",
+    "benefits",
+    "featured_collection",
+    "doctor_testimonial",
+    "social_proof",
+    "email_signup"
+  ]
+}
